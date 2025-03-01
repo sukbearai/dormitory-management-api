@@ -6,7 +6,7 @@
 
 # Dormitory Management Api
 
-基于 `Nitro` 和 `Arco Design Vue-Pro` 搭建的一站式宿舍管理系统。该系统旨在提供一个方便、高效的宿舍管理解决方案，帮助管理员和学生更好地管理宿舍信息。
+基于 `Nitro` 和 `Arco Design Vue Pro` 搭建的一站式宿舍管理系统。该系统旨在提供一个方便、高效的宿舍管理解决方案，帮助管理员和学生更好地管理宿舍信息。
 
 # Nitro starter
 
