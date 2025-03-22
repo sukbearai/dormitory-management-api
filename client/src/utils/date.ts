@@ -1,20 +1,20 @@
 /**
  * 日期格式化工具函数
  */
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
-import 'dayjs/locale/zh-cn';
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
+import 'dayjs/locale/zh-cn'
 
 // 加载相对时间插件
-dayjs.extend(relativeTime);
-dayjs.extend(utc);
-dayjs.extend(timezone);
+dayjs.extend(relativeTime)
+dayjs.extend(utc)
+dayjs.extend(timezone)
 // 设置语言为中文
-dayjs.locale('zh-cn');
+dayjs.locale('zh-cn')
 // 设置默认时区为亚洲/上海（UTC+8）
-dayjs.tz.setDefault('Asia/Shanghai');
+dayjs.tz.setDefault('Asia/Shanghai')
 
 /**
  * 格式化日期为 YYYY-MM-DD HH:mm:ss 格式
@@ -22,15 +22,16 @@ dayjs.tz.setDefault('Asia/Shanghai');
  * @returns 格式化后的日期字符串
  */
 export function formatDate(date: string | Date | number): string {
-  if (!date) return '';
-  
-  const d = dayjs.utc(date).tz();
-  
+  if (!date)
+    return ''
+
+  const d = dayjs.utc(date).tz()
+
   if (!d.isValid()) {
-    return '';
+    return ''
   }
-  
-  return d.format('YYYY-MM-DD HH:mm:ss');
+
+  return d.format('YYYY-MM-DD HH:mm:ss')
 }
 
 /**
@@ -39,15 +40,16 @@ export function formatDate(date: string | Date | number): string {
  * @returns 格式化后的日期字符串
  */
 export function formatDateShort(date: string | Date | number): string {
-  if (!date) return '';
-  
-  const d = dayjs(date).tz();
-  
+  if (!date)
+    return ''
+
+  const d = dayjs(date).tz()
+
   if (!d.isValid()) {
-    return '';
+    return ''
   }
-  
-  return d.format('YYYY-MM-DD');
+
+  return d.format('YYYY-MM-DD')
 }
 
 /**
@@ -56,22 +58,23 @@ export function formatDateShort(date: string | Date | number): string {
  * @returns 相对时间描述
  */
 export function getRelativeTime(date: string | Date | number): string {
-  if (!date) return '';
-  
-  const d = dayjs(date).tz();
-  
+  if (!date)
+    return ''
+
+  const d = dayjs(date).tz()
+
   if (!d.isValid()) {
-    return '';
+    return ''
   }
-  
-  const now = dayjs().tz();
-  const diffInDays = now.diff(d, 'day');
-  
+
+  const now = dayjs().tz()
+  const diffInDays = now.diff(d, 'day')
+
   // 如果超过30天，返回标准格式
   if (diffInDays > 30) {
-    return formatDate(date);
+    return formatDate(date)
   }
-  
+
   // 否则返回相对时间
-  return d.fromNow();
+  return d.fromNow()
 }

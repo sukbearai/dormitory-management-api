@@ -33,13 +33,14 @@ export default defineEventHandler(async (): Promise<ApiResponse<InspectionInfo[]
     return {
       code: 200,
       message: '获取检查记录成功',
-      data: inspections
+      data: inspections,
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('获取检查记录失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

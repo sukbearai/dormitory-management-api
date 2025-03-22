@@ -3,14 +3,14 @@ import type { ApiResponse } from '~~/types/api'
 import { query } from '~~/utils/db'
 
 interface StudentDormInfo extends RowDataPacket {
-    student_id: number
-    username: string
-    real_name: string | null
-    contact: string | null
-    dorm_id: number
-    dorm_number: string
-    building_name: string
-    checkin_time: Date
+  student_id: number
+  username: string
+  real_name: string | null
+  contact: string | null
+  dorm_id: number
+  dorm_number: string
+  building_name: string
+  checkin_time: Date
 }
 
 export default defineEventHandler(async (): Promise<ApiResponse<StudentDormInfo[]>> => {
@@ -36,13 +36,14 @@ export default defineEventHandler(async (): Promise<ApiResponse<StudentDormInfo[
     return {
       code: 200,
       message: '获取学生住宿信息成功',
-      data: students
+      data: students,
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('获取学生住宿信息失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

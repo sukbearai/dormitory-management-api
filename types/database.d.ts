@@ -6,25 +6,25 @@ export interface BaseRow extends RowDataPacket {
 }
 
 interface CountResult extends RowDataPacket {
-  count: number;
+  count: number
 }
 
 interface OccupancyRecord extends RowDataPacket {
-  month: string;
-  count: number;
+  month: string
+  count: number
 }
 
 interface RepairStatusCount extends RowDataPacket {
-  status: 'pending' | 'in_progress' | 'completed';
-  count: number;
+  status: 'pending' | 'in_progress' | 'completed'
+  count: number
 }
 
 interface UserIdResult extends RowDataPacket {
-  user_id: number;
+  user_id: number
 }
 
 interface UserPasswordResult extends RowDataPacket {
-  password: string;
+  password: string
 }
 
 export interface UserRow extends BaseRow {
@@ -82,16 +82,16 @@ export interface LateReturnRow extends BaseRow {
 }
 
 export interface UserLoginResult extends RowDataPacket {
-  user_id: number;
-  username: string;
-  password: string;
-  role: UserRow['role'];
-  real_name: string | null;
+  user_id: number
+  username: string
+  password: string
+  role: UserRow['role']
+  real_name: string | null
 }
 
 export interface DormInfoResult extends RowDataPacket {
-  dorm_number: string;
-  building: string;
+  dorm_number: string
+  building: string
 }
 
-export interface UserListResult extends RowDataPacket  { total: number }
+export interface UserListResult extends RowDataPacket { total: number }

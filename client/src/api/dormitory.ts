@@ -9,7 +9,7 @@ export interface DormitoryListResult {
 
 export function getDormitoryList() {
   return request<HttpResponse<DormRow[]>>('/api/admin/dormitory-list', {
-    method: 'GET'
+    method: 'GET',
   })
 }
 
@@ -20,7 +20,7 @@ export function createDormitory(data: {
 }) {
   return request<HttpResponse>('/api/admin/dormitory-create', {
     method: 'POST',
-    data
+    data,
   })
 }
 
@@ -32,13 +32,13 @@ export function updateDormitory(data: {
 }) {
   return request<HttpResponse>('/api/admin/dormitory-update', {
     method: 'POST',
-    data
+    data,
   })
 }
 
 export function deleteDormitory(dormId: number) {
   return request<HttpResponse>('/api/admin/dormitory-delete', {
     method: 'POST',
-    data: { dormId }
+    data: { dormId },
   })
 }

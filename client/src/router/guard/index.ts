@@ -1,17 +1,17 @@
-import type { Router } from 'vue-router';
-import { setRouteEmitter } from '@/utils/route-listener';
-import setupPermissionGuard from './permission';
-import setupUserLoginInfoGuard from './userLoginInfo';
+import type { Router } from 'vue-router'
+import setupPermissionGuard from './permission'
+import setupUserLoginInfoGuard from './userLoginInfo'
+import { setRouteEmitter } from '@/utils/route-listener'
 
 function setupPageGuard(router: Router) {
   router.beforeEach(async (to) => {
     // emit route change
-    setRouteEmitter(to);
-  });
+    setRouteEmitter(to)
+  })
 }
 
 export default function createRouteGuard(router: Router) {
-  setupPageGuard(router);
-  setupUserLoginInfoGuard(router);
-  setupPermissionGuard(router);
+  setupPageGuard(router)
+  setupUserLoginInfoGuard(router)
+  setupPermissionGuard(router)
 }

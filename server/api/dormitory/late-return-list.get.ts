@@ -31,13 +31,14 @@ export default defineEventHandler(async (): Promise<ApiResponse<LateReturnInfo[]
     return {
       code: 200,
       message: '获取晚归记录成功',
-      data: lateReturns
+      data: lateReturns,
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('获取晚归记录失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

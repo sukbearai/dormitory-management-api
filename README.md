@@ -39,7 +39,7 @@ pnpm run build # 打包部署
 
 ```bash
 # 启动服务
-docker compose up -d 
+docker compose up -d
 
 # 查看服务状态
 docker compose ps

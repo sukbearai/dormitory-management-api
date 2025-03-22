@@ -31,7 +31,7 @@ export default defineEventHandler(async (event): Promise<ApiResponse<{
     // 获取总数
     const [countResult] = await query<UserListResult[]>(
       `SELECT COUNT(*) as total FROM Users WHERE ${whereClause}`,
-      params
+      params,
     )
 
     // 获取所有数据
@@ -40,7 +40,7 @@ export default defineEventHandler(async (event): Promise<ApiResponse<{
        FROM Users 
        WHERE ${whereClause}
        ORDER BY created_at DESC`,
-      params
+      params,
     )
 
     return {
@@ -48,14 +48,15 @@ export default defineEventHandler(async (event): Promise<ApiResponse<{
       message: '获取用户列表成功',
       data: {
         total: countResult.total,
-        list: users
-      }
+        list: users,
+      },
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('获取用户列表失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

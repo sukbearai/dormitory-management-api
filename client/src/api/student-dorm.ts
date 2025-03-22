@@ -15,7 +15,7 @@ export interface StudentDormInfo {
 // 获取学生住宿信息列表
 export function getStudentDormList() {
   return request<HttpResponse<StudentDormInfo[]>>('/api/dormitory/student-dorm', {
-    method: 'GET'
+    method: 'GET',
   })
 }
 
@@ -26,7 +26,7 @@ export function studentCheckin(data: {
 }) {
   return request<HttpResponse>('/api/dormitory/student-checkin', {
     method: 'POST',
-    data
+    data,
   })
 }
 
@@ -37,7 +37,7 @@ export function changeStudentDorm(data: {
 }) {
   return request<HttpResponse>('/api/dormitory/student-change-dorm', {
     method: 'POST',
-    data
+    data,
   })
 }
 
@@ -45,6 +45,6 @@ export function changeStudentDorm(data: {
 export function studentCheckout(studentId: number) {
   return request<HttpResponse>('/api/dormitory/student-checkout', {
     method: 'POST',
-    data: { studentId }
+    data: { studentId },
   })
 }

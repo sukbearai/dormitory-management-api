@@ -1,6 +1,6 @@
 import type { ApiResponse, UserInfo } from '~~/types/api'
 import type { DormInfoResult, UserRow } from '~~/types/database'
-import {  queryOne } from '~~/utils/db'
+import { queryOne } from '~~/utils/db'
 
 export default defineEventHandler(async (event): Promise<ApiResponse<UserInfo>> => {
   try {
@@ -9,7 +9,7 @@ export default defineEventHandler(async (event): Promise<ApiResponse<UserInfo>> 
     if (!userId) {
       return {
         code: 401,
-        message: '未授权'
+        message: '未授权',
       }
     }
 
@@ -23,13 +23,13 @@ export default defineEventHandler(async (event): Promise<ApiResponse<UserInfo>> 
         contact
       FROM Users 
       WHERE user_id = ?`,
-      [userId]
+      [userId],
     )
 
     if (!user) {
       return {
         code: 404,
-        message: '用户不存在'
+        message: '用户不存在',
       }
     }
 
@@ -41,13 +41,13 @@ export default defineEventHandler(async (event): Promise<ApiResponse<UserInfo>> 
         FROM Student_Dorm sd
         JOIN Dorms d ON sd.dorm_id = d.dorm_id
         WHERE sd.student_id = ?`,
-        [userId]
+        [userId],
       )
-      
+
       if (dormData) {
         dormInfo = {
           dormNumber: dormData.dorm_number,
-          building: dormData.building
+          building: dormData.building,
         }
       }
     }
@@ -61,17 +61,17 @@ export default defineEventHandler(async (event): Promise<ApiResponse<UserInfo>> 
         role: user.role,
         name: user.real_name || '',
         contact: user.contact || '',
-        dorm: dormInfo
-      }
+        dorm: dormInfo,
+      },
     }
 
     return response
-
-  } catch (error) {
+  }
+  catch (error) {
     console.error('获取用户信息失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

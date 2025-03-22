@@ -16,18 +16,19 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
 
     await query(
       'INSERT INTO Dorm_Inspections (dorm_id, staff_id, inspection_time, result, remarks) VALUES (?, ?, ?, ?, ?)',
-      [dormId, staffId, inspectionTime, result, remarks || null]
+      [dormId, staffId, inspectionTime, result, remarks || null],
     )
 
     return {
       code: 200,
-      message: '创建检查记录成功'
+      message: '创建检查记录成功',
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('创建检查记录失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

@@ -1,4 +1,4 @@
-import type { ApiResponse } from "~~/types/api"
+import type { ApiResponse } from '~~/types/api'
 
 export default defineEventHandler(async (event): Promise<ApiResponse> => {
   try {
@@ -7,7 +7,7 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
     if (!userId) {
       return {
         code: 401,
-        message: '未授权'
+        message: '未授权',
       }
     }
 
@@ -15,14 +15,14 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
     // 客户端会清除本地存储的 token
     return {
       code: 200,
-      message: '退出成功'
+      message: '退出成功',
     }
-
-  } catch (error) {
+  }
+  catch (error) {
     console.error('退出失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

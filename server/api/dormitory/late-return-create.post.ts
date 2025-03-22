@@ -15,18 +15,19 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
 
     await query(
       'INSERT INTO Late_Returns (student_id, dorm_id, return_time, reason) VALUES (?, ?, ?, ?)',
-      [studentId, dormId, returnTime, reason || null]
+      [studentId, dormId, returnTime, reason || null],
     )
 
     return {
       code: 200,
-      message: '晚归记录创建成功'
+      message: '晚归记录创建成功',
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('创建晚归记录失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

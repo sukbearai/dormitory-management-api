@@ -39,30 +39,31 @@ export default defineEventHandler(async (): Promise<ApiResponse<InspectionStats>
     `)
 
     const stats: InspectionStats = {
-        total_inspections: 0,
-        ...totalStats,
-        result_counts: {
-            '优秀': totalStats.excellent_count,
-            '良好': totalStats.good_count,
-            '合格': totalStats.pass_count,
-            '不合格': totalStats.fail_count
-        },
-        building_stats: buildingStats.map(stat => ({
-            building_name: stat.building_name,
-            inspection_count: stat.inspection_count
-        })),
+      total_inspections: 0,
+      ...totalStats,
+      result_counts: {
+        优秀: totalStats.excellent_count,
+        良好: totalStats.good_count,
+        合格: totalStats.pass_count,
+        不合格: totalStats.fail_count,
+      },
+      building_stats: buildingStats.map(stat => ({
+        building_name: stat.building_name,
+        inspection_count: stat.inspection_count,
+      })),
     }
 
     return {
       code: 200,
       message: '获取检查统计成功',
-      data: stats
+      data: stats,
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('获取检查统计失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

@@ -16,20 +16,20 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
     if (user?.role !== 'admin') {
       return {
         code: 403,
-        message: '无权限执行此操作'
+        message: '无权限执行此操作',
       }
     }
 
     // 不允许删除管理员账号
     const [targetUser] = await query<UserRow[]>(
       'SELECT * FROM Users WHERE user_id = ?',
-      [userId]
+      [userId],
     )
 
     if (targetUser && targetUser?.role === 'admin' && targetUser?.username === 'admin') {
       return {
         code: 400,
-        message: '不能删除管理员账号'
+        message: '不能删除管理员账号',
       }
     }
 
@@ -37,13 +37,14 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
 
     return {
       code: 200,
-      message: '删除用户成功'
+      message: '删除用户成功',
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('删除用户失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

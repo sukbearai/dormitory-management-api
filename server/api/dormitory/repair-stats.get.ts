@@ -59,28 +59,29 @@ export default defineEventHandler(async (): Promise<ApiResponse<RepairStats>> =>
       status_counts: {
         pending: totalStats.pending_count,
         in_progress: totalStats.in_progress_count,
-        completed: totalStats.completed_count
+        completed: totalStats.completed_count,
       },
       building_stats: buildingStats.map(stat => ({
         building_name: stat.building_name,
-        repair_count: stat.repair_count
+        repair_count: stat.repair_count,
       })),
       monthly_stats: monthlyStats.map(stat => ({
         month: stat.month,
-        repair_count: stat.repair_count
-      }))
+        repair_count: stat.repair_count,
+      })),
     } as RepairStats
 
     return {
       code: 200,
       message: '获取维修统计成功',
-      data: stats
+      data: stats,
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('获取维修统计失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

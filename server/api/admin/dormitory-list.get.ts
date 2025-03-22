@@ -10,17 +10,18 @@ export default defineEventHandler(async (): Promise<ApiResponse<DormRow[]>> => {
       LEFT JOIN Buildings b ON d.build_id = b.build_id
       ORDER BY d.created_at DESC
     `)
-    
+
     return {
       code: 200,
       message: '获取宿舍列表成功',
-      data: dorms
+      data: dorms,
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('获取宿舍列表失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

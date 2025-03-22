@@ -1,12 +1,12 @@
-import type { ApiResponse, LoginResponse } from '~~/types/api'
-import type { UserRow } from '~~/types/database'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import type { ApiResponse, LoginResponse } from '~~/types/api'
+import type { UserRow } from '~~/types/database'
 import { queryOne } from '~~/utils/db'
 
 interface LoginBody {
-  username: string;
-  password: string;
+  username: string
+  password: string
 }
 
 export default defineEventHandler(async (event): Promise<ApiResponse<LoginResponse>> => {
@@ -17,19 +17,19 @@ export default defineEventHandler(async (event): Promise<ApiResponse<LoginRespon
     if (!username || !password) {
       return {
         code: 400,
-        message: '用户名和密码不能为空'
+        message: '用户名和密码不能为空',
       }
     }
 
     const user = await queryOne<UserRow>(
       'SELECT user_id, username, password, role, real_name FROM Users WHERE username = ?',
-      [username]
+      [username],
     )
 
     if (!user) {
       return {
         code: 400,
-        message: '用户名或密码错误'
+        message: '用户名或密码错误',
       }
     }
 
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event): Promise<ApiResponse<LoginRespon
     if (!isValidPassword) {
       return {
         code: 400,
-        message: '用户名或密码错误'
+        message: '用户名或密码错误',
       }
     }
 
@@ -45,10 +45,10 @@ export default defineEventHandler(async (event): Promise<ApiResponse<LoginRespon
       {
         user_id: user.user_id,
         username: user.username,
-        role: user.role
+        role: user.role,
       },
       'dormitory-management',
-      { expiresIn: '24h' }
+      { expiresIn: '24h' },
     )
 
     return {
@@ -60,15 +60,16 @@ export default defineEventHandler(async (event): Promise<ApiResponse<LoginRespon
           user_id: user.user_id,
           username: user.username,
           role: user.role,
-          real_name: user.real_name
-        }
-      }
+          real_name: user.real_name,
+        },
+      },
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('登录失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

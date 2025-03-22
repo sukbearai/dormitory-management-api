@@ -15,20 +15,20 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
     if (user?.role !== 'admin') {
       return {
         code: 403,
-        message: '无权限执行此操作'
+        message: '无权限执行此操作',
       }
     }
 
     // 检查是否有学生入住
     const [studentCount] = await query(
       'SELECT COUNT(*) as count FROM Student_Dorm WHERE dorm_id = ?',
-      [dormId]
+      [dormId],
     )
 
     if (studentCount.count > 0) {
       return {
         code: 400,
-        message: '该宿舍还有学生入住，无法删除'
+        message: '该宿舍还有学生入住，无法删除',
       }
     }
 
@@ -36,13 +36,14 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
 
     return {
       code: 200,
-      message: '删除宿舍成功'
+      message: '删除宿舍成功',
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('删除宿舍失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

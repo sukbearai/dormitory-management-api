@@ -1,14 +1,14 @@
+import bcrypt from 'bcrypt'
 import type { ApiResponse } from '~~/types/api'
 import type { UserRow } from '~~/types/database'
-import bcrypt from 'bcrypt'
 import { insert, queryOne } from '~~/utils/db'
 
 type AddUserBody = Pick<UserRow, 'username' | 'password' | 'role' | 'real_name' | 'contact'>
 
 export default defineEventHandler<Promise<ApiResponse<{
-    user_id: number
-    username: string
-    role: string
+  user_id: number
+  username: string
+  role: string
 }>>>(async (event) => {
   try {
     const body = await readBody<AddUserBody>(event)
@@ -18,20 +18,20 @@ export default defineEventHandler<Promise<ApiResponse<{
     if (!username || !password || !role) {
       return {
         code: 400,
-        message: '用户名、密码和角色不能为空'
+        message: '用户名、密码和角色不能为空',
       }
     }
 
     // 检查用户名是否已存在
     const existingUser = await queryOne<UserRow>(
       'SELECT username FROM Users WHERE username = ?',
-      [username]
+      [username],
     )
 
     if (existingUser) {
       return {
         code: 400,
-        message: '用户名已存在'
+        message: '用户名已存在',
       }
     }
 
@@ -42,7 +42,7 @@ export default defineEventHandler<Promise<ApiResponse<{
     // 插入新用户
     const userId = await insert(
       'INSERT INTO Users (username, password, role, real_name, contact) VALUES (?, ?, ?, ?, ?)',
-      [username, hashedPassword, role, real_name || '', contact || '']
+      [username, hashedPassword, role, real_name || '', contact || ''],
     )
 
     return {
@@ -51,14 +51,15 @@ export default defineEventHandler<Promise<ApiResponse<{
       data: {
         user_id: userId,
         username,
-        role
-      }
+        role,
+      },
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('添加用户失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

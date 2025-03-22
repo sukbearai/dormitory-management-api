@@ -1,12 +1,12 @@
-import NProgress from 'nprogress'; // progress bar
-import { createRouter, createWebHistory } from 'vue-router';
-import createRouteGuard from './guard';
+import NProgress from 'nprogress' // progress bar
+import { createRouter, createWebHistory } from 'vue-router'
+import createRouteGuard from './guard'
 
-import { appRoutes } from './routes';
-import { NOT_FOUND_ROUTE, REDIRECT_MAIN } from './routes/base';
-import 'nprogress/nprogress.css';
+import { appRoutes } from './routes'
+import { NOT_FOUND_ROUTE, REDIRECT_MAIN } from './routes/base'
+import 'nprogress/nprogress.css'
 
-NProgress.configure({ showSpinner: false }); // NProgress Configuration
+NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const router = createRouter({
   history: createWebHistory(),
@@ -23,7 +23,7 @@ const router = createRouter({
         roles: ['*'],
         requiresAuth: false,
       },
-     
+
     },
     {
       path: '/register',
@@ -39,10 +39,10 @@ const router = createRouter({
     NOT_FOUND_ROUTE,
   ],
   scrollBehavior() {
-    return { top: 0 };
+    return { top: 0 }
   },
-});
+})
 
-createRouteGuard(router);
+createRouteGuard(router)
 
-export default router;
+export default router

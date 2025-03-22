@@ -7,7 +7,7 @@ export default defineEventHandler(async (event): Promise<ApiResponse<MenuItem[]>
   if (!role) {
     return {
       code: 401,
-      message: '未授权访问'
+      message: '未授权访问',
     }
   }
 
@@ -33,7 +33,6 @@ export default defineEventHandler(async (event): Promise<ApiResponse<MenuItem[]>
       ],
     },
   ]
-
 
   // 根据角色返回不同的菜单
   const roleMenus: Record<UserRow['role'], MenuItem[]> = {
@@ -116,7 +115,7 @@ export default defineEventHandler(async (event): Promise<ApiResponse<MenuItem[]>
   const response: ApiResponse<MenuItem[]> = {
     code: 200,
     message: '获取菜单成功',
-    data: [...baseMenus, ...(roleMenus[role] || [])]
+    data: [...baseMenus, ...(roleMenus[role] || [])],
   }
 
   return response

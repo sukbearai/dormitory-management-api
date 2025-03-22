@@ -14,18 +14,19 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
 
     await query(
       'UPDATE Repairs SET status = ?, maintenance_id = ? WHERE repair_id = ?',
-      [status, maintenanceId || null, repairId]
+      [status, maintenanceId || null, repairId],
     )
 
     return {
       code: 200,
-      message: '更新维修状态成功'
+      message: '更新维修状态成功',
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('更新维修状态失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

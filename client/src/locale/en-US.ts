@@ -1,5 +1,5 @@
-import localeSettings from './en-US/settings';
+import localeSettings from './en-US/settings'
 
 export default {
   ...localeSettings,
-};
+}

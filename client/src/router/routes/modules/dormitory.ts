@@ -1,5 +1,5 @@
-import type { AppRouteRecordRaw } from '../types';
-import { DEFAULT_LAYOUT } from '../base';
+import type { AppRouteRecordRaw } from '../types'
+import { DEFAULT_LAYOUT } from '../base'
 
 const DORMITORY: AppRouteRecordRaw = {
   path: '/dormitory',
@@ -29,7 +29,7 @@ const DORMITORY: AppRouteRecordRaw = {
       meta: {
         locale: '宿舍管理',
         requiresAuth: true,
-        roles: ['admin','dorm_staff'],
+        roles: ['admin', 'dorm_staff'],
       },
     },
     {
@@ -39,7 +39,7 @@ const DORMITORY: AppRouteRecordRaw = {
       meta: {
         locale: '住宿管理',
         requiresAuth: true,
-        roles: ['admin','dorm_staff'],
+        roles: ['admin', 'dorm_staff'],
       },
     },
     {
@@ -49,7 +49,7 @@ const DORMITORY: AppRouteRecordRaw = {
       meta: {
         locale: '宿舍检查',
         requiresAuth: true,
-        roles: ['admin','dorm_staff'],
+        roles: ['admin', 'dorm_staff'],
       },
     },
     {
@@ -59,7 +59,7 @@ const DORMITORY: AppRouteRecordRaw = {
       meta: {
         locale: '晚归管理',
         requiresAuth: true,
-        roles: ['admin','dorm_staff','student'],
+        roles: ['admin', 'dorm_staff', 'student'],
       },
     },
     {
@@ -69,10 +69,10 @@ const DORMITORY: AppRouteRecordRaw = {
       meta: {
         locale: '宿舍维修',
         requiresAuth: true,
-        roles: ['admin','dorm_staff','maintenance','student'],
+        roles: ['admin', 'dorm_staff', 'maintenance', 'student'],
       },
     },
   ],
-};
+}
 
-export default DORMITORY;
+export default DORMITORY

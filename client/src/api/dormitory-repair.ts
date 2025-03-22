@@ -35,7 +35,7 @@ export interface RepairStats {
 // 获取维修工单列表
 export function getRepairList() {
   return request<HttpResponse<RepairInfo[]>>('/api/dormitory/repair-list', {
-    method: 'GET'
+    method: 'GET',
   })
 }
 
@@ -47,7 +47,7 @@ export function createRepair(data: {
 }) {
   return request<HttpResponse>('/api/dormitory/repair-create', {
     method: 'POST',
-    data
+    data,
   })
 }
 
@@ -59,13 +59,13 @@ export function updateRepair(data: {
 }) {
   return request<HttpResponse>('/api/dormitory/repair-update', {
     method: 'POST',
-    data
+    data,
   })
 }
 
 // 获取维修统计数据
 export function getRepairStats() {
   return request<HttpResponse<RepairStats>>('/api/dormitory/repair-stats', {
-    method: 'GET'
+    method: 'GET',
   })
 }

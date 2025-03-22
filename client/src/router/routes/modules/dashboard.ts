@@ -1,5 +1,5 @@
-import type { AppRouteRecordRaw } from '../types';
-import { DEFAULT_LAYOUT } from '../base';
+import type { AppRouteRecordRaw } from '../types'
+import { DEFAULT_LAYOUT } from '../base'
 
 const DASHBOARD: AppRouteRecordRaw = {
   path: '/dashboard',
@@ -23,6 +23,6 @@ const DASHBOARD: AppRouteRecordRaw = {
       },
     },
   ],
-};
+}
 
-export default DASHBOARD;
+export default DASHBOARD

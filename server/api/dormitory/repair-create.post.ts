@@ -14,18 +14,19 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
 
     await query(
       'INSERT INTO Repairs (student_id, dorm_id, description) VALUES (?, ?, ?)',
-      [studentId, dormId, description]
+      [studentId, dormId, description],
     )
 
     return {
       code: 200,
-      message: '维修申请创建成功'
+      message: '维修申请创建成功',
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('创建维修申请失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

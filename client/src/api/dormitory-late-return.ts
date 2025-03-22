@@ -31,7 +31,7 @@ export interface LateReturnStats {
 // 获取晚归记录列表
 export function getLateReturnList() {
   return request<HttpResponse<LateReturnInfo[]>>('/api/dormitory/late-return-list', {
-    method: 'GET'
+    method: 'GET',
   })
 }
 
@@ -44,13 +44,13 @@ export function createLateReturn(data: {
 }) {
   return request<HttpResponse>('/api/dormitory/late-return-create', {
     method: 'POST',
-    data
+    data,
   })
 }
 
 // 获取晚归统计数据
 export function getLateReturnStats() {
   return request<HttpResponse<LateReturnStats>>('/api/dormitory/late-return-stats', {
-    method: 'GET'
+    method: 'GET',
   })
 }

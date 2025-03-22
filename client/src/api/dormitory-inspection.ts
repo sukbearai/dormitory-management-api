@@ -27,7 +27,7 @@ export interface InspectionStats {
 // 获取检查记录列表
 export function getInspectionList() {
   return request<HttpResponse<InspectionInfo[]>>('/api/dormitory/inspection-list', {
-    method: 'GET'
+    method: 'GET',
   })
 }
 
@@ -41,13 +41,13 @@ export function createInspection(data: {
 }) {
   return request<HttpResponse>('/api/dormitory/inspection-create', {
     method: 'POST',
-    data
+    data,
   })
 }
 
 // 获取检查统计数据
 export function getInspectionStats() {
   return request<HttpResponse<InspectionStats>>('/api/dormitory/inspection-stats', {
-    method: 'GET'
+    method: 'GET',
   })
 }

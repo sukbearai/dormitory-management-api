@@ -8,18 +8,19 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
 
     await insert(
       'INSERT INTO Buildings (building_name, staff_id) VALUES (?, ?)',
-      [building_name, staff_id]
+      [building_name, staff_id],
     )
 
     return {
       code: 200,
-      message: '创建宿舍楼成功'
+      message: '创建宿舍楼成功',
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('创建宿舍楼失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

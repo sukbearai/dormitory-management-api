@@ -38,13 +38,14 @@ export default defineEventHandler(async (): Promise<ApiResponse<RepairInfo[]>> =
     return {
       code: 200,
       message: '获取维修列表成功',
-      data: repairs
+      data: repairs,
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('获取维修列表失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

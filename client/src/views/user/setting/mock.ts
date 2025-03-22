@@ -1,12 +1,12 @@
 /* eslint-disable prefer-regex-literals */
-import setupMock, { successResponseWrap } from '@/utils/setup-mock';
-import Mock from 'mockjs';
+import Mock from 'mockjs'
+import setupMock, { successResponseWrap } from '@/utils/setup-mock'
 
 setupMock({
   setup() {
     Mock.mock(new RegExp('/api/user/save-info'), () => {
-      return successResponseWrap('ok');
-    });
+      return successResponseWrap('ok')
+    })
     Mock.mock(new RegExp('/api/user/certification'), () => {
       return successResponseWrap({
         enterpriseInfo: {
@@ -34,10 +34,10 @@ setupMock({
             time: '2020-05-13 08:00:00',
           },
         ],
-      });
-    });
+      })
+    })
     Mock.mock(new RegExp('/api/user/upload'), () => {
-      return successResponseWrap('ok');
-    });
+      return successResponseWrap('ok')
+    })
   },
-});
+})

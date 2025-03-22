@@ -4,8 +4,8 @@ import mysql from 'mysql2/promise'
 const pool = mysql.createPool({
   host: 'localhost',
   port: 3306,
-  user: 'dormitory',      
-  password: 'dormitory123', 
+  user: 'dormitory',
+  password: 'dormitory123',
   database: 'dormitory_management',
   waitForConnections: true,
   connectionLimit: 10,
@@ -14,8 +14,8 @@ const pool = mysql.createPool({
 
 // 查询多行数据
 export async function query<T extends RowDataPacket[]>(
-  sql: string, 
-  values: unknown[] = []
+  sql: string,
+  values: unknown[] = [],
 ): Promise<T> {
   const [rows] = await pool.execute<T>(sql, values)
   return rows
@@ -24,7 +24,7 @@ export async function query<T extends RowDataPacket[]>(
 // 查询单行数据
 export async function queryOne<T extends RowDataPacket>(
   sql: string,
-  values: unknown[] = []
+  values: unknown[] = [],
 ): Promise<T | null> {
   const [rows] = await pool.execute<T[]>(sql, values)
   return rows[0] || null
@@ -33,7 +33,7 @@ export async function queryOne<T extends RowDataPacket>(
 // 执行插入操作
 export async function insert(
   sql: string,
-  values: unknown[] = []
+  values: unknown[] = [],
 ): Promise<number> {
   const [result] = await pool.execute<ResultSetHeader>(sql, values)
   return result.insertId
@@ -42,7 +42,7 @@ export async function insert(
 // 执行更新操作
 export async function update(
   sql: string,
-  values: unknown[] = []
+  values: unknown[] = [],
 ): Promise<number> {
   const [result] = await pool.execute<ResultSetHeader>(sql, values)
   return result.affectedRows

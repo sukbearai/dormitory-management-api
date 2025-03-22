@@ -4,7 +4,7 @@ import { request } from '@/utils/request'
 
 export function getBuildingList() {
   return request<HttpResponse<BuildingRow[]>>('/api/admin/building-list', {
-    method: 'GET'
+    method: 'GET',
   })
 }
 
@@ -14,13 +14,13 @@ export function createBuilding(data: {
 }) {
   return request<HttpResponse>('/api/admin/building-create', {
     method: 'POST',
-    data
+    data,
   })
 }
 
 export function deleteBuilding(buildId: number) {
   return request<HttpResponse>('/api/admin/building-delete', {
     method: 'POST',
-    data: { buildId }
+    data: { buildId },
   })
 }

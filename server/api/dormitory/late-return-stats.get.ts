@@ -27,7 +27,7 @@ export default defineEventHandler(async (): Promise<ApiResponse<LateReturnStats>
     `)
 
     // 获取学生晚归统计
-    const studentStats = await query<(RowDataPacket & { student_name: string; late_count: number })[]>(`
+    const studentStats = await query<(RowDataPacket & { student_name: string, late_count: number })[]>(`
       SELECT 
         u.real_name as student_name,
         COUNT(lr.late_id) as late_count
@@ -39,7 +39,7 @@ export default defineEventHandler(async (): Promise<ApiResponse<LateReturnStats>
     `)
 
     // 获取楼栋晚归统计
-    const buildingStats = await query<(RowDataPacket & { building_name: string; late_count: number })[]>(`
+    const buildingStats = await query<(RowDataPacket & { building_name: string, late_count: number })[]>(`
       SELECT 
         b.building_name,
         COUNT(lr.late_id) as late_count
@@ -51,7 +51,7 @@ export default defineEventHandler(async (): Promise<ApiResponse<LateReturnStats>
     `)
 
     // 获取月度晚归统计
-    const monthlyStats = await query<(RowDataPacket & { month: string; late_count: number })[]>(`
+    const monthlyStats = await query<(RowDataPacket & { month: string, late_count: number })[]>(`
       SELECT 
         DATE_FORMAT(return_time, '%Y-%m') as month,
         COUNT(*) as late_count
@@ -65,19 +65,20 @@ export default defineEventHandler(async (): Promise<ApiResponse<LateReturnStats>
       total_late_returns: totalStats.total_late_returns,
       student_stats: studentStats,
       building_stats: buildingStats,
-      monthly_stats: monthlyStats
+      monthly_stats: monthlyStats,
     } as LateReturnStats
 
     return {
       code: 200,
       message: '获取晚归统计成功',
-      data: stats
+      data: stats,
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('获取晚归统计失败:', error)
     return {
       code: 500,
-      message: '服务器错误'
+      message: '服务器错误',
     }
   }
 })

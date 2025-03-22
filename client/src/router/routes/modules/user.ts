@@ -1,5 +1,5 @@
-import type { AppRouteRecordRaw } from '../types';
-import { DEFAULT_LAYOUT } from '../base';
+import type { AppRouteRecordRaw } from '../types'
+import { DEFAULT_LAYOUT } from '../base'
 
 const USER: AppRouteRecordRaw = {
   path: '/user',
@@ -33,6 +33,6 @@ const USER: AppRouteRecordRaw = {
       },
     },
   ],
-};
+}
 
-export default USER;
+export default USER

@@ -11,7 +11,7 @@ services:
       MYSQL_USER: dormitory
       MYSQL_PASSWORD: dormitory123
     ports:
-      - "3306:3306"
+      - '3306:3306'
     volumes:
       - mysql_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
