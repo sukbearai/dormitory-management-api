@@ -25,6 +25,9 @@ export default defineEventHandler(async (): Promise<ApiResponse<RepairInfo[]>> =
         r.description,
         r.status,
         u2.real_name as maintenance_name,
+        r.rating,
+        r.comment,
+        r.rated_at,
         r.created_at,
         r.updated_at
       FROM Repairs r

@@ -167,6 +167,9 @@ CREATE TABLE `Repairs` (
   `description` text NOT NULL,
   `status` enum('pending','in_progress','completed') DEFAULT 'pending',
   `maintenance_id` int DEFAULT NULL,
+  `rating` int DEFAULT NULL,
+  `comment` text DEFAULT NULL,
+  `rated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`repair_id`),
@@ -175,7 +178,8 @@ CREATE TABLE `Repairs` (
   KEY `maintenance_id` (`maintenance_id`),
   CONSTRAINT `Repairs_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `Users` (`user_id`),
   CONSTRAINT `Repairs_ibfk_2` FOREIGN KEY (`dorm_id`) REFERENCES `Dorms` (`dorm_id`),
-  CONSTRAINT `Repairs_ibfk_3` FOREIGN KEY (`maintenance_id`) REFERENCES `Users` (`user_id`)
+  CONSTRAINT `Repairs_ibfk_3` FOREIGN KEY (`maintenance_id`) REFERENCES `Users` (`user_id`),
+  CONSTRAINT `rating_range` CHECK (`rating` >= 1 AND `rating` <= 5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

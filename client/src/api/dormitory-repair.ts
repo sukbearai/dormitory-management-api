@@ -1,6 +1,12 @@
 import type { HttpResponse } from '@/utils/request'
 import { request } from '@/utils/request'
 
+export interface RateRepairParams {
+  repairId: number
+  rating: number
+  comment: string
+}
+
 // 维修工单信息接口
 export interface RepairInfo {
   repair_id: number
@@ -10,10 +16,12 @@ export interface RepairInfo {
   description: string
   status: 'pending' | 'in_progress' | 'completed'
   maintenance_name: string | null
+  rating: number | null
+  comment: string | null
+  rated_at: Date | null
   created_at: Date
   updated_at: Date
 }
-
 // 维修统计信息接口
 export interface RepairStats {
   total_repairs: number
@@ -67,5 +75,13 @@ export function updateRepair(data: {
 export function getRepairStats() {
   return request<HttpResponse<RepairStats>>('/api/dormitory/repair-stats', {
     method: 'GET',
+  })
+}
+
+// 评价维修工单
+export function rateRepair(data: RateRepairParams) {
+  return request<HttpResponse>('/api/dormitory/repair-rate', {
+    method: 'POST',
+    data,
   })
 }
