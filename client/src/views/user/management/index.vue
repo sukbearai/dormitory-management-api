@@ -56,7 +56,7 @@
           <a-form-item field="username" label="用户名">
             <a-input v-model="formData.username" placeholder="请输入用户名" />
           </a-form-item>
-          <a-form-item field="password" label="密码">
+          <a-form-item v-if="!isEdit" field="password" label="密码">
             <a-input-password v-model="formData.password" placeholder="请输入密码" />
           </a-form-item>
           <a-form-item field="role" label="角色">
@@ -139,7 +139,7 @@
   
   const rules = {
     username: [{ required: true, message: '请输入用户名' }],
-    password: [{ required: true, message: '请输入密码' }],
+    password: [{ required: !isEdit.value, message: '请输入密码' }], 
     role: [{ required: true, message: '请选择角色' }],
     real_name: [{ required: true, message: '请输入姓名' }],
     contact: [

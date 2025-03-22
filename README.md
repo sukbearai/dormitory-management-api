@@ -38,8 +38,12 @@ pnpm run build # 打包部署
 > 数据库初始化，初始管理员账号密码为：admin/admin123
 
 ```bash
-# 启动服务
+# 完全重建服务（包括数据库）
+docker compose down -v
 docker compose up -d
+
+# 仅重启服务（保留数据）
+docker compose restart
 
 # 查看服务状态
 docker compose ps

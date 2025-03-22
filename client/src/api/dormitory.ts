@@ -1,5 +1,5 @@
 import type { HttpResponse } from '@/utils/request'
-import type { DormRow } from '~~/types/database'
+import type { DormRow, StudentRow } from '~~/types/database'
 import { request } from '@/utils/request'
 
 export interface DormitoryListResult {
@@ -9,6 +9,12 @@ export interface DormitoryListResult {
 
 export function getDormitoryList() {
   return request<HttpResponse<DormRow[]>>('/api/admin/dormitory-list', {
+    method: 'GET',
+  })
+}
+
+export function getDormitoryDetail(dormId: number) {
+  return request<HttpResponse<StudentRow[]>>(`/api/admin/dorm-detail/${dormId}`, {
     method: 'GET',
   })
 }

@@ -52,6 +52,13 @@
                   >
                     编辑
                   </a-button>
+                  <a-button
+                    type="text"
+                    size="small"
+                    @click="openDetailModal(record)"
+                  >
+                    查看详情
+                  </a-button>
                   <a-popconfirm content="确认删除该宿舍吗？" @ok="handleDelete(record)">
                     <a-button
                       type="text"
@@ -73,6 +80,11 @@
         :dorm="currentDorm"
         @success="refreshDormList"
       />
+
+      <DormDetail
+        v-model:visible="detailVisible"
+        :dorm-id="currentDormId"
+      />
     </div>
   </template>
   
@@ -83,8 +95,11 @@
   import { getDormitoryList, deleteDormitory } from '@/api/dormitory'
   import type { DormRow } from '~~/types/database'
   import DormForm from './components/dorm-form.vue'
+  import DormDetail from './components/dorm-detail.vue'
   import { useRequest } from 'vue-hooks-plus'
   
+  const detailVisible = ref(false)
+  const currentDormId = ref<number>()
   const visible = ref(false)
   const currentDorm = ref<DormRow | null>(null)
   const renderData = ref<DormRow[]>([])
@@ -122,6 +137,11 @@
       Message.error('删除失败')
     }
   })
+
+  const openDetailModal = (record: DormRow) => {
+    currentDormId.value = record.dorm_id
+    detailVisible.value = true
+  }
   
   const openCreateModal = () => {
     currentDorm.value = null

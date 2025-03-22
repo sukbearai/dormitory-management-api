@@ -1,5 +1,37 @@
 import type { RowDataPacket } from 'mysql2'
 
+export interface NotificationRow extends RowDataPacket {
+  notification_id: number
+  title: string
+  content: string
+  staff_id: number
+  building_id: number
+  created_at: Date
+  updated_at: Date
+}
+
+export interface NotificationInfo extends NotificationRow {
+  staff_name: string
+  building_name: string
+}
+
+interface DormDetailInfo extends RowDataPacket {
+  dorm_id: number
+  dorm_number: string
+  building_name: string
+  capacity: number
+  students: StudentRow[]
+}
+
+export interface StudentRow extends RowDataPacket {
+  student_id: number
+  student_number: string
+  name: string
+  gender: number
+  phone: string
+  dorm_id: number
+}
+
 export interface BaseRow extends RowDataPacket {
   created_at?: Date
   updated_at?: Date

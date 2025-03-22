@@ -219,6 +219,38 @@ LOCK TABLES `Student_Dorm` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Notifications`
+--
+
+DROP TABLE IF EXISTS `Notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Notifications` (
+  `notification_id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `content` text NOT NULL,
+  `staff_id` int NOT NULL,
+  `building_id` int NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`notification_id`),
+  KEY `staff_id` (`staff_id`),
+  KEY `building_id` (`building_id`),
+  CONSTRAINT `Notifications_ibfk_1` FOREIGN KEY (`staff_id`) REFERENCES `Users` (`user_id`),
+  CONSTRAINT `Notifications_ibfk_2` FOREIGN KEY (`building_id`) REFERENCES `Buildings` (`build_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Notifications`
+--
+
+LOCK TABLES `Notifications` WRITE;
+/*!40000 ALTER TABLE `Notifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Notifications` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Users`
 --
 

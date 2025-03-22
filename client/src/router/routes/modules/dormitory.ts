@@ -13,6 +13,16 @@ const DORMITORY: AppRouteRecordRaw = {
   },
   children: [
     {
+      path: 'notification',
+      name: 'notification',
+      component: () => import('@/views/dormitory/notification/index.vue'),
+      meta: {
+        locale: '通知管理',
+        requiresAuth: true,
+        roles: ['dorm_staff', 'student'],
+      },
+    },
+    {
       path: 'building',
       name: 'Building',
       component: () => import('@/views/dormitory/building/index.vue'),
